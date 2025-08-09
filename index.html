@@ -1,86 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Shopping Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-            text-align: center;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 20px;
-        }
-        .item {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin: 15px;
-            width: 250px;
-            padding: 15px;
-        }
-        .item img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .item h3 {
-            margin: 10px 0;
-        }
-        .price {
-            color: green;
-            font-weight: bold;
-        }
-        button {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #555;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yoow — Where Old Feels New</title>
+  <style>
+    :root{
+      --accent:#ff6a00;
+      --muted:#6b7280;
+      --bg:#f6f7f9;
+      --card:#ffffff;
+      --maxw:1100px;
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#111;line-height:1.4}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
+    header{display:flex;align-items:center;gap:16px;padding:10px 0}
+    .logo {
+      display:flex;align-items:center;gap:12px;
+    }
+    .logo-mark{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ff9a3d);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 6px 20px rgba(255,106,0,0.18)}
+    .logo-mark svg{width:32px;height:32px;fill:#fff}
+    .brand {line-height:1}
+    .brand h1{margin:0;font-size:20px;letter-spacing:0.4px}
+    .tag{margin:0;font-size:13px;color:var(--muted)}
+    nav{margin-left:auto;display:flex;gap:12px;align-items:center}
+    nav a{color:#374151;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px}
+    nav a.cta{background:var(--accent);color:white}
+    .hero{background:linear-gradient(180deg, rgba(255,106,0,0.08), transparent);border-radius:var(--radius);padding:28px;margin:18px 0;display:grid;grid-template-columns:1fr;gap:12px;align-items:center}
+    .hero h2{margin:0;font-size:24px}
+    .hero p{margin:0;color:var(--muted)}
+    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(15,15,15,0.04);text-align:center}
+    .card img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+    .card h3{margin:10px 0 6px;font-size:16px}
+    .price{color:#059669;font-weight:700;font-size:16px}
+    .btn{display:inline-block;margin-top:10px;padding:9px 14px;border-radius:9px;background:#111;color:#fff;text-decoration:none;font-weight:600}
+    footer{margin-top:28px;padding:18px 0;text-align:center;color:var(--muted);font-size:13px}
+    @media (max-width:900px){.products{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.wrap{padding:12px}.products{grid-template-columns:1fr}.hero{padding:18px}.logo-mark{width:44px;height:44px}.card img{height:220px}}
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <div class="logo-mark" aria-hidden>
+          <!-- simple Y mark -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l4 6-4 5-4-5 4-6zm0 13v7" stroke="none"/>
+          </svg>
+        </div>
+        <div class="brand">
+          <h1>Yoow</h1>
+          <p class="tag">Where Old Feels New</p>
+        </div>
+      </div>
 
-<header>
-    <h1>Welcome to My Store</h1>
-</header>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">About</a>
+        <a class="cta" href="#">Cart</a>
+      </nav>
+    </header>
 
-<div class="container">
-    <div class="item">
-        <img src="https://via.placeholder.com/250x200?text=Item+1" alt="Item 1">
-        <h3>Merchandise 1</h3>
-        <p class="price">$20</p>
-        <button>Add to Cart</button>
-    </div>
-    <div class="item">
-        <img src="https://via.placeholder.com/250x200?text=Item+2" alt="Item 2">
-        <h3>Merchandise 2</h3>
-        <p class="price">$35</p>
-        <button>Add to Cart</button>
-    </div>
-    <div class="item">
-        <img src="https://via.placeholder.com/250x200?text=Item+3" alt="Item 3">
-        <h3>Merchandise 3</h3>
-        <p class="price">$50</p>
-        <button>Add to Cart</button>
-    </div>
-</div>
+    <section class="hero" role="region" aria-label="Hero">
+      <div>
+        <h2>Timeless finds, refreshed for you</h2>
+        <p>Curated vintage and remade classics — discover pieces that tell a story.</p>
+      </div>
+    </section>
 
+    <section class="products" aria-label="Products">
+      <article class="card">
+        <img src="https://via.placeholder.com/600x400?text=Vintage+Jacket" alt="Vintage Jacket">
+        <h3>Vintage Jacket</h3>
+        <div class="price">₹ 2,499</div>
+        <a class="btn" href="#">Add to Cart</a>
+      </article>
+
+      <article class="card">
+        <img src="https://via.placeholder.com/600x400?text=Leather+Wallet" alt="Leather Wallet">
+        <h3>Minimal Leather Wallet</h3>
+        <div class="price">₹ 899</div>
+        <a class="btn" href="#">Add to Cart</a>
+      </article>
+
+      <article class="card">
+        <img src="https://via.placeholder.com/600x400?text=Retro+Watch" alt="Retro Watch">
+        <h3>Retro Watch</h3>
+        <div class="price">₹ 3,199</div>
+        <a class="btn" href="#">Add to Cart</a>
+      </article>
+    </section>
+
+    <footer>
+      &copy; 2025 Yoow — Where Old Feels New · Built with ❤️
+    </footer>
+  </div>
 </body>
 </html>
