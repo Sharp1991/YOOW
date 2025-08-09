@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Yoow — Where Old Feels New</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root{
       --accent:#ff6a00;
@@ -17,35 +18,217 @@
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:#111;line-height:1.4}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
-    header{display:flex;align-items:center;gap:16px;padding:10px 0}
+    
+    /* Header styles */
+    header{display:flex;align-items:center;gap:16px;padding:10px 0;position:relative}
     .logo {
       display:flex;align-items:center;gap:12px;
     }
     .logo-mark{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ff9a3d);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 6px 20px rgba(255,106,0,0.18)}
-    .logo-mark svg{width:32px;height:32px;fill:#fff}
+    .logo-mark img{width:32px;height:32px;border-radius:8px}
     .brand {line-height:1}
     .brand h1{margin:0;font-size:20px;letter-spacing:0.4px}
     .tag{margin:0;font-size:13px;color:var(--muted)}
+    
+    /* Navigation styles */
     nav{margin-left:auto;display:flex;gap:12px;align-items:center}
     nav a{color:#374151;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px}
-    nav a.cta{background:var(--accent);color:white}
+    nav a.cta{background:var(--accent);color:white;position:relative}
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ef4444;
+      color: white;
+      font-size: 12px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Hero section */
     .hero{background:linear-gradient(180deg, rgba(255,106,0,0.08), transparent);border-radius:var(--radius);padding:28px;margin:18px 0;display:grid;grid-template-columns:1fr;gap:12px;align-items:center}
     .hero h2{margin:0;font-size:24px}
     .hero p{margin:0;color:var(--muted)}
+    
+    /* Products section */
     .products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(15,15,15,0.04);text-align:center}
+    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(15,15,15,0.04);text-align:center;transition:transform 0.3s, box-shadow 0.3s}
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
     .card img{
       width:100%;
       height:180px;
       object-fit:cover;
       border-radius:10px;
-      /* Ensure proper aspect ratio */
       aspect-ratio: 3/4;
     }
     .card h3{margin:10px 0 6px;font-size:16px}
     .price{color:#059669;font-weight:700;font-size:16px}
-    .btn{display:inline-block;margin-top:10px;padding:9px 14px;border-radius:9px;background:#111;color:#fff;text-decoration:none;font-weight:600}
+    .btn{
+      display:inline-block;
+      margin-top:10px;
+      padding:9px 14px;
+      border-radius:9px;
+      background:#111;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      border:none;
+      transition:background 0.3s;
+    }
+    .btn:hover {
+      background: var(--accent);
+    }
+    
+    /* Cart flyout */
+    .cart-flyout {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 350px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      z-index: 1000;
+      transition: right 0.4s ease;
+      overflow-y: auto;
+    }
+    .cart-flyout.active {
+      right: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #777;
+    }
+    .cart-items {
+      margin: 20px 0;
+    }
+    .cart-item {
+      display: flex;
+      gap: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .cart-item-details {
+      flex-grow: 1;
+      text-align: left;
+    }
+    .cart-item-details h4 {
+      margin: 0 0 5px;
+      font-size: 16px;
+    }
+    .item-price {
+      color: #059669;
+      font-weight: bold;
+    }
+    .item-quantity {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+    .item-quantity button {
+      width: 28px;
+      height: 28px;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .item-quantity span {
+      margin: 0 10px;
+    }
+    .remove-item {
+      color: #ef4444;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    .cart-total {
+      font-weight: bold;
+      font-size: 18px;
+      text-align: right;
+      margin: 20px 0;
+    }
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .checkout-btn:hover {
+      background: #e55a00;
+    }
+    
+    /* Footer */
     footer{margin-top:28px;padding:18px 0;text-align:center;color:var(--muted);font-size:13px}
+    
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .overlay.active {
+      display: block;
+    }
+    
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #10b981;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1001;
+    }
+    .toast.show {
+      opacity: 1;
+    }
+    
+    /* Media queries */
     @media (max-width:900px){.products{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:560px){
       .wrap{padding:12px}
@@ -53,6 +236,10 @@
       .hero{padding:18px}
       .logo-mark{width:44px;height:44px}
       .card img{height:220px}
+      .cart-flyout {
+        width: 100%;
+        right: -100%;
+      }
     }
   </style>
 </head>
@@ -61,8 +248,7 @@
     <header>
       <div class="logo">
         <div class="logo-mark" aria-hidden>
-          <!-- Replaced SVG with actual logo -->
-          <img src="logo.png" alt="Yoow Logo" style="width:100%;height:100%;object-fit:contain">
+          <img src="logo.png" alt="Yoow Logo">
         </div>
         <div class="brand">
           <h1>Yoow</h1>
@@ -74,7 +260,10 @@
         <a href="#">Home</a>
         <a href="#">Products</a>
         <a href="#">About</a>
-        <a class="cta" href="#">Cart</a>
+        <a class="cta" href="#" id="cart-button">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+        </a>
       </nav>
     </header>
 
@@ -87,27 +276,24 @@
 
     <section class="products" aria-label="Products">
       <article class="card">
-        <!-- Actual product image -->
         <img src="jacket.jpg" alt="Vintage Jacket">
         <h3>Vintage Jacket</h3>
         <div class="price">₹ 2,499</div>
-        <a class="btn" href="#">Add to Cart</a>
+        <button class="btn add-to-cart" data-id="1" data-name="Vintage Jacket" data-price="2499" data-image="jacket.jpg">Add to Cart</button>
       </article>
 
       <article class="card">
-        <!-- Actual product image -->
         <img src="wallet.jpg" alt="Leather Wallet">
         <h3>Minimal Leather Wallet</h3>
         <div class="price">₹ 899</div>
-        <a class="btn" href="#">Add to Cart</a>
+        <button class="btn add-to-cart" data-id="2" data-name="Minimal Leather Wallet" data-price="899" data-image="wallet.jpg">Add to Cart</button>
       </article>
 
       <article class="card">
-        <!-- Actual product image -->
         <img src="watch.jpg" alt="Retro Watch">
         <h3>Retro Watch</h3>
         <div class="price">₹ 3,199</div>
-        <a class="btn" href="#">Add to Cart</a>
+        <button class="btn add-to-cart" data-id="3" data-name="Retro Watch" data-price="3199" data-image="watch.jpg">Add to Cart</button>
       </article>
     </section>
 
@@ -115,5 +301,189 @@
       &copy; 2025 Yoow — Where Old Feels New · Built with ❤️
     </footer>
   </div>
+  
+  <!-- Shopping cart flyout -->
+  <div class="cart-flyout" id="cart-flyout">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-cart" id="close-cart">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <!-- Cart items will be added here dynamically -->
+      <p id="empty-cart-message">Your cart is empty</p>
+    </div>
+    <div class="cart-total">
+      Total: ₹<span id="cart-total">0</span>
+    </div>
+    <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+  </div>
+  
+  <!-- Overlay for when cart is open -->
+  <div class="overlay" id="overlay"></div>
+  
+  <!-- Toast notification -->
+  <div class="toast" id="toast">Item added to cart!</div>
+  
+  <script>
+    // Cart functionality
+    let cart = [];
+    const cartCount = document.querySelector('.cart-count');
+    const cartButton = document.getElementById('cart-button');
+    const cartFlyout = document.getElementById('cart-flyout');
+    const closeCart = document.getElementById('close-cart');
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const overlay = document.getElementById('overlay');
+    const toast = document.getElementById('toast');
+    const emptyCartMessage = document.getElementById('empty-cart-message');
+    
+    // Add to cart buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function() {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseInt(this.dataset.price);
+        const image = this.dataset.image;
+        
+        // Check if item is already in cart
+        const existingItem = cart.find(item => item.id === id);
+        
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            id,
+            name,
+            price,
+            image,
+            quantity: 1
+          });
+        }
+        
+        updateCart();
+        
+        // Show toast notification
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2000);
+      });
+    });
+    
+    // Update cart UI
+    function updateCart() {
+      // Update cart count
+      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = totalItems;
+      
+      // Update cart items
+      cartItems.innerHTML = '';
+      
+      if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+        cartTotal.textContent = '0';
+        return;
+      }
+      
+      emptyCartMessage.style.display = 'none';
+      
+      let total = 0;
+      
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-item-details">
+            <h4>${item.name}</h4>
+            <div class="item-price">₹${item.price}</div>
+            <div class="item-quantity">
+              <button class="decrease-quantity" data-id="${item.id}">-</button>
+              <span>${item.quantity}</span>
+              <button class="increase-quantity" data-id="${item.id}">+</button>
+            </div>
+            <button class="remove-item" data-id="${item.id}">Remove</button>
+          </div>
+        `;
+        cartItems.appendChild(cartItem);
+      });
+      
+      cartTotal.textContent = total;
+      
+      // Add event listeners to the new buttons
+      document.querySelectorAll('.decrease-quantity').forEach(button => {
+        button.addEventListener('click', function() {
+          const id = this.dataset.id;
+          const item = cart.find(item => item.id === id);
+          
+          if (item.quantity > 1) {
+            item.quantity -= 1;
+          } else {
+            cart = cart.filter(item => item.id !== id);
+          }
+          
+          updateCart();
+        });
+      });
+      
+      document.querySelectorAll('.increase-quantity').forEach(button => {
+        button.addEventListener('click', function() {
+          const id = this.dataset.id;
+          const item = cart.find(item => item.id === id);
+          item.quantity += 1;
+          updateCart();
+        });
+      });
+      
+      document.querySelectorAll('.remove-item').forEach(button => {
+        button.addEventListener('click', function() {
+          const id = this.dataset.id;
+          cart = cart.filter(item => item.id !== id);
+          updateCart();
+        });
+      });
+    }
+    
+    // Toggle cart visibility
+    cartButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      cartFlyout.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    closeCart.addEventListener('click', function() {
+      cartFlyout.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    overlay.addEventListener('click', function() {
+      cartFlyout.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    // Checkout button
+    checkoutBtn.addEventListener('click', function() {
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      
+      alert('Thank you for your order! Total: ₹' + cartTotal.textContent);
+      cart = [];
+      updateCart();
+      cartFlyout.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    // Initialize cart
+    updateCart();
+  </script>
 </body>
 </html>
