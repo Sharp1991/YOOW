@@ -1,290 +1,357 @@
 <link rel="stylesheet" href="style.css">
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>YOOW — Echoes from the Hills</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YOOW — Echoes from the Hills</title>
 
-<!-- Fonts & icons -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 
-<style>
-  :root{
-    --forest:#1E3D34;
-    --muted-green:#3C6E47;
-    --beige:#F5E6CC;
-    --mustard:#C49A3B;
-    --bg:#FAF8F4;
-    --card:#ffffff;
-    --text:#243028;
-  }
-
-  /* Reset & base */
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-
-  /* Header / hero */
-  .site-header{
-    position:relative;
-    overflow:hidden;
-    background: linear-gradient(180deg, rgba(30,61,52,0.95), rgba(30,61,52,0.95));
-    color:var(--beige);
-  }
-  /* subtle hills SVG background (decorative) */
-  .hero-hills{
-    position:absolute; inset:0; width:100%; height:100%; pointer-events:none;
-    background:
-      radial-gradient(ellipse at 20% 70%, rgba(255,255,255,0.03) 0 20%, transparent 40%),
-      linear-gradient(180deg, rgba(255,255,255,0.03), transparent 30%);
-    z-index:0;
-  }
-  .header-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:18px 16px;display:flex;align-items:center;gap:14px}
-  .logo-wrap{display:flex;align-items:center;gap:12px}
-  .logo-img{height:64px;width:auto;border-radius:10px;background:var(--card);padding:6px;display:block}
-  .logo-fallback{display:none;font-weight:700; font-size:1.15rem; color:var(--beige)}
-  .brand-title{font-size:1.25rem;margin:0;font-weight:700}
-  .brand-sub{margin:0;font-size:0.9rem;color:var(--beige);opacity:0.95}
-
-  /* Mobile nav toggle */
-  .nav-toggle{margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--beige);padding:8px 10px;border-radius:8px;display:flex;gap:8px;align-items:center;cursor:pointer}
-  .nav-toggle i{font-size:1rem}
-
-  /* Hero content */
-  .hero-content{max-width:1200px;margin:14px auto 28px;padding:0 16px;display:grid;grid-template-columns:1fr;gap:12px;align-items:center}
-  .hero-text{color:var(--beige)}
-  .hero-title{font-size:1.8rem;margin:6px 0 0;font-weight:700}
-  .hero-tag{font-size:1rem;margin:6px 0;color:var(--beige);opacity:0.95;font-style:italic}
-  .hero-desc{color:rgba(245,230,204,0.95);margin-top:10px;max-width:820px}
-
-  .hero-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:600}
-  .btn-primary{background:var(--mustard);color:#fff}
-  .btn-outline{background:transparent;color:var(--beige);border:1.5px solid rgba(255,255,255,0.15)}
-
-  /* Main */
-  main{max-width:1200px;margin:0 auto;padding:18px 16px 80px}
-
-  /* Categories */
-  .categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:18px}
-  .cat{background:var(--card);padding:12px;border-radius:10px;text-align:center;box-shadow:0 6px 18px rgba(30,61,50,0.06)}
-  .cat i{font-size:22px;color:var(--mustard);margin-bottom:8px}
-  .cat h3{font-size:0.98rem;margin:6px 0 0}
-
-  /* Featured products */
-  .section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 14px}
-  .section-head h2{margin:0;color:var(--muted-green)}
-  .products{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-  .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(25,45,30,0.06);display:flex;flex-direction:column}
-  .card img{width:100%;height:200px;object-fit:cover;display:block}
-  .card .info{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
-  .p-title{font-weight:700;font-size:0.98rem}
-  .p-meta{color:#6f786f;font-size:0.9rem}
-  .p-row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;gap:10px}
-  .price{color:var(--mustard);font-weight:700}
-  .whatsapp{background:#25D366;color:white;padding:8px 10px;border-radius:8px;font-weight:700;display:inline-flex;align-items:center;gap:8px}
-
-  /* Footer */
-  footer{background:var(--muted-green);color:var(--beige);padding:18px 16px;margin-top:28px}
-  .footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:8px;align-items:center}
-  .socials{display:flex;gap:12px}
-
-  /* Responsive */
-  @media(min-width:720px){
-    .hero-content{grid-template-columns:1fr 360px;align-items:center}
-    .hero-title{font-size:2.2rem}
-    .logo-img{height:72px}
-  }
-  @media(max-width:520px){
-    .hero-title{font-size:1.4rem}
-    .card img{height:160px}
-    .nav-toggle{padding:8px}
-  }
-
-  /* small utilities */
-  .muted{color:#6b6f67;font-size:0.95rem}
-  .pill{background:#eef6ee;padding:6px 8px;border-radius:999px;font-weight:600;color:var(--muted-green);font-size:0.88rem}
-</style>
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-
-<header class="site-header" role="banner">
-  <div class="hero-hills" aria-hidden="true">
-    <!-- Decorative hills SVG (subtle shapes) -->
-    <svg width="100%" height="100%" viewBox="0 0 1200 300" preserveAspectRatio="none" style="position:absolute;bottom:0;left:0;opacity:0.18;">
-      <defs>
-        <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#e6f0e8"/><stop offset="1" stop-color="#f7f7f7"/></linearGradient>
-      </defs>
-      <path d="M0 200 C150 120 300 220 500 190 C700 160 900 230 1200 190 L1200 300 L0 300 Z" fill="#ffffff"></path>
-      <path d="M0 240 C140 200 320 260 540 230 C760 200 980 270 1200 230 L1200 300 L0 300 Z" fill="#ffffff"></path>
-    </svg>
-  </div>
-
-  <div class="header-inner">
-    <div class="logo-wrap">
-      <img src="logooo.png" alt="YOOW logo" class="logo-img" id="siteLogo" onerror="logoFallback()">
-      <div>
-        <div class="logo-fallback" id="logoText" style="display:none">YOOW</div>
-        <div class="brand-title">YOOW</div>
-        <div class="brand-sub">Echoes from the Hills</div>
-      </div>
-    </div>
-
-    <button class="nav-toggle" id="menuToggle" aria-label="Open menu"><i class="fas fa-bars"></i> Menu</button>
-  </div>
-
-  <div class="hero-content">
-    <div class="hero-text">
-      <div class="pill">Preloved • Reused • Northeast</div>
-      <h1 class="hero-title">Echoes from the Hills</h1>
-      <div class="hero-tag">Reuse fashion from the heart of Northeast—unique pieces with stories.</div>
-      <p class="hero-desc muted">Curated thrifted pieces, traditional weaves & celebrity-inspired items from Shillong and beyond. Sustainable, local, beautiful.</p>
-
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="#featured" aria-label="Shop featured">Shop Featured</a>
-        <!-- WhatsApp prefilled message; change number if needed -->
-        <a class="btn btn-outline" href="https://wa.me/919876543210?text=Hello%20Yoow!%20I%20am%20interested%20in%20your%20collection." aria-label="Message on WhatsApp">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-      </div>
-    </div>
-
-    <aside style="padding:12px;">
-      <div style="background:var(--card);padding:14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);">
-        <h3 style="margin:0 0 6px;color:var(--muted-green)">Hillside Icons</h3>
-        <p class="muted" style="margin:0 0 10px">Exclusive local-celebrity inspired preloved pieces.</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <span class="pill">Ethnic</span>
-          <span class="pill">Vintage</span>
-          <span class="pill">Handwoven</span>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-top container">
+      <div class="brand">
+        <img src="logooo.png" alt="YOOW logo" class="logo" id="siteLogo" onerror="logoFallback()">
+        <div class="brand-text">
+          <div class="brand-name">YOOW</div>
+          <div class="brand-tag">Echoes from the Hills</div>
         </div>
       </div>
-    </aside>
-  </div>
-</header>
 
-<main role="main">
-  <section aria-labelledby="categoriesHead" style="margin-bottom:18px">
-    <div class="section-head">
-      <h2 id="categoriesHead">Browse Categories</h2>
-      <div class="muted">Tap to explore</div>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav class="main-nav" id="mainNav" aria-label="Primary">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#featured">Featured</a></li>
+          <li><a href="#local">Hillside Icons</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
 
-    <div class="categories" id="categories">
-      <div class="cat" role="button" onclick="location.href='#featured'">
-        <i class="fas fa-star"></i>
-        <h3>Hillside Icons</h3>
-        <div class="muted">Celebrity & influencer pieces</div>
+    <!-- decorative hills -->
+    <div class="hero container" id="home" role="banner" aria-label="Hero">
+      <div class="hero-left">
+        <div class="pill">Preloved • Reused • Northeast</div>
+        <h1>Echoes from the Hills</h1>
+        <p class="lead">Curated preloved fashion from the Northeast — local craftsmanship, celebrity pieces, and heritage styles reimagined.</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#featured">Shop Featured</a>
+          <a class="btn outline" href="https://wa.me/919876543210?text=Hi%20Yoow!%20I%20want%20to%20know%20more%20about%20your%20collection" target="_blank" rel="noopener"> <i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
       </div>
 
-      <div class="cat" role="button" onclick="location.href='#featured'">
-        <i class="fas fa-leaf"></i>
-        <h3>Everyday Echoes</h3>
-        <div class="muted">Affordable daily wear</div>
-      </div>
-
-      <div class="cat" role="button" onclick="location.href='#featured'">
-        <i class="fas fa-tshirt"></i>
-        <h3>Heritage Threads</h3>
-        <div class="muted">Traditional & handwoven</div>
-      </div>
-
-      <div class="cat" role="button" onclick="location.href='#featured'">
-        <i class="fas fa-box"></i>
-        <h3>Vintage Gems</h3>
-        <div class="muted">Carefully restored pieces</div>
+      <div class="hero-right" aria-hidden="true">
+        <!-- stylized card -->
+        <div class="hero-card">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c8695b8bca54b5b1a2e5a7f9393a4f8" alt="Featured style">
+        </div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <section id="featured" aria-labelledby="featuredHead">
-    <div class="section-head">
-      <h2 id="featuredHead">Featured Products</h2>
-      <div class="muted">Handpicked from our collection</div>
-    </div>
+  <!-- Main content -->
+  <main class="container" id="main">
+    <!-- Categories -->
+    <section id="categories" aria-labelledby="catHead" class="section">
+      <div class="section-head">
+        <h2 id="catHead">Shop by Category</h2>
+        <p class="muted">Handpicked categories from Shillong & beyond</p>
+      </div>
 
-    <div class="products">
-      <!-- Product 1 -->
-      <article class="card" role="article" aria-label="Handwoven Jacket">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c8695b8bca54b5b1a2e5a7f9393a4f8" alt="Handwoven vintage jacket">
-        <div class="info">
-          <div class="p-title">Handwoven Vintage Jacket</div>
-          <div class="p-meta muted">Size: M • Good condition</div>
-          <div class="p-row">
-            <div class="price">₹1,200</div>
-            <a class="whatsapp" href="https://wa.me/919876543210?text=Hi%20Yoow!%20I'm%20interested%20in%20the%20Handwoven%20Vintage%20Jacket%20-%20please%20share%20details" aria-label="Enquire via WhatsApp">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
+      <div class="categories-grid">
+        <button class="cat-card" aria-pressed="false" onclick="scrollToSection('local')">
+          <i class="fas fa-star"></i>
+          <h3>Hillside Icons</h3>
+          <p class="muted">Local Celebrity Fashion</p>
+        </button>
+
+        <button class="cat-card">
+          <i class="fas fa-leaf"></i>
+          <h3>Heritage Threads</h3>
+          <p class="muted">Traditional & handwoven</p>
+        </button>
+
+        <button class="cat-card">
+          <i class="fas fa-tshirt"></i>
+          <h3>Everyday Echoes</h3>
+          <p class="muted">Casual preloved wear</p>
+        </button>
+
+        <button class="cat-card">
+          <i class="fas fa-box-open"></i>
+          <h3>Vintage Gems</h3>
+          <p class="muted">Restored classics</p>
+        </button>
+
+        <button class="cat-card">
+          <i class="fas fa-gem"></i>
+          <h3>Accessories</h3>
+          <p class="muted">Bags, shawls, jewelry</p>
+        </button>
+
+        <button class="cat-card">
+          <i class="fas fa-snowflake"></i>
+          <h3>Winter Specials</h3>
+          <p class="muted">Cozy & warm</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- Featured -->
+    <section id="featured" aria-labelledby="featHead" class="section">
+      <div class="section-head">
+        <h2 id="featHead">Featured Products</h2>
+        <p class="muted">Curated picks — new arrivals & local favourites</p>
+      </div>
+
+      <div class="filters">
+        <div class="filter-pill active">All</div>
+        <div class="filter-pill">Hillside Icons</div>
+        <div class="filter-pill">Heritage Threads</div>
+        <div class="filter-pill">Under ₹1,500</div>
+      </div>
+
+      <div class="products-grid" role="list">
+        <!-- 12 product cards -->
+        <!-- 1 -->
+        <article class="product-card fade-in" role="listitem" aria-label="Handwoven Jacket">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c8695b8bca54b5b1a2e5a7f9393a4f8" alt="Handwoven vintage jacket">
+          <div class="p-body">
+            <h3 class="p-title">Handwoven Vintage Jacket</h3>
+            <div class="p-meta muted">Size: M • Excellent condition</div>
+            <div class="p-bottom">
+              <div class="price">₹1,200</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Handwoven%20Vintage%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Product 2 -->
-      <article class="card" role="article" aria-label="Tribal Print Dress">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=48a5dc7d2f4f8b0f5c1b5dbd6ea6c2f2" alt="Tribal print dress">
-        <div class="info">
-          <div class="p-title">Tribal Print Dress</div>
-          <div class="p-meta muted">Size: L • Hand-stitched</div>
-          <div class="p-row">
-            <div class="price">₹950</div>
-            <a class="whatsapp" href="https://wa.me/919876543210?text=Hi%20Yoow!%20I'm%20interested%20in%20the%20Tribal%20Print%20Dress" aria-label="Enquire via WhatsApp">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
+        <!-- 2 -->
+        <article class="product-card fade-in" role="listitem" aria-label="Tribal Dress">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1520975918318-3c13c94c0921?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=99f3b2e6b1f6c6c3f5d0b2b6e6a9d6bd" alt="Tribal print dress">
+          <div class="p-body">
+            <h3 class="p-title">Tribal Print Dress</h3>
+            <div class="p-meta muted">Size: L • Hand-stitched</div>
+            <div class="p-bottom">
+              <div class="price">₹950</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Tribal%20Print%20Dress" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Product 3 -->
-      <article class="card" role="article" aria-label="Handmade Bamboo Bag">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1520975918318-3c13c94c0921?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=99f3b2e6b1f6c6c3f5d0b2b6e6a9d6bd" alt="Handmade bamboo bag">
-        <div class="info">
-          <div class="p-title">Handmade Bamboo Bag</div>
-          <div class="p-meta muted">One-of-a-kind • Lightweight</div>
-          <div class="p-row">
-            <div class="price">₹700</div>
-            <a class="whatsapp" href="https://wa.me/919876543210?text=Hello%20Yoow!%20I%20want%20to%20buy%20the%20Bamboo%20Bag" aria-label="Enquire via WhatsApp">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
+        <!-- 3 -->
+        <article class="product-card fade-in" role="listitem" aria-label="Bamboo Bag">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=48a5dc7d2f4f8b0f5c1b5dbd6ea6c2f2" alt="Handmade bamboo bag">
+          <div class="p-body">
+            <h3 class="p-title">Handmade Bamboo Bag</h3>
+            <div class="p-meta muted">One-of-a-kind</div>
+            <div class="p-bottom">
+              <div class="price">₹700</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Handmade%20Bamboo%20Bag" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
           </div>
-        </div>
-      </article>
-    </div>
-  </section>
+        </article>
 
-</main>
+        <!-- 4 -->
+        <article class="product-card fade-in" role="listitem">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1520974740006-6d3a4e8e56a3?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f4f2b2f2f6e0b7c6e6c9a8b9f2c3a6d" alt="Retro denim jacket">
+          <div class="p-body">
+            <h3 class="p-title">Retro Denim Jacket</h3>
+            <div class="p-meta muted">Size: XL • Lightly used</div>
+            <div class="p-bottom">
+              <div class="price">₹1,050</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Retro%20Denim%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
 
-<footer role="contentinfo">
-  <div class="footer-inner">
-    <div>📍 Police Bazar, Shillong, Meghalaya • 📞 <a href="tel:+919876543210" style="color:inherit;">+91 98765 43210</a></div>
-    <div class="socials" aria-hidden="true">
-      <a href="#" aria-label="Instagram" style="color:var(--beige)"><i class="fab fa-instagram"></i></a>
-      <a href="#" aria-label="Facebook" style="color:var(--beige)"><i class="fab fa-facebook"></i></a>
+        <!-- 5 -->
+        <article class="product-card fade-in" role="listitem">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=48a5dc7d2f4f8b0f5c1b5dbd6ea6c2f2" alt="Floral dress">
+          <div class="p-body">
+            <h3 class="p-title">Floral Summer Dress</h3>
+            <div class="p-meta muted">Size: S • Excellent</div>
+            <div class="p-bottom">
+              <div class="price">₹650</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Floral%20Summer%20Dress" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="product-card fade-in" role="listitem">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1578934845150-9b83b0b8f9e2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2b3c4d5e6f7a8b9c0d" alt="Leather bag">
+          <div class="p-body">
+            <h3 class="p-title">Vintage Leather Bag</h3>
+            <div class="p-meta muted">Classic brown</div>
+            <div class="p-bottom">
+              <div class="price">₹1,600</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Vintage%20Leather%20Bag" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="product-card fade-in" role="listitem">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcdef123456" alt="Wool shawl">
+          <div class="p-body">
+            <h3 class="p-title">Woolen Shawl</h3>
+            <div class="p-meta muted">Warm & soft</div>
+            <div class="p-bottom">
+              <div class="price">₹850</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Woolen%20Shawl" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="product-card fade-in" role="listitem">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=aa11bb22cc33" alt="Classic watch">
+          <div class="p-body">
+            <h3 class="p-title">Classic Wristwatch</h3>
+            <div class="p-meta muted">Preloved, working</div>
+            <div class="p-bottom">
+              <div class="price">₹1,400</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Classic%20Wristwatch" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9 -->
+        <article class="product-card fade-in" role="listitem">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1556909116-1b7b8a3e2b6d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=998877665544" alt="Statement necklace">
+          <div class="p-body">
+            <h3 class="p-title">Statement Necklace</h3>
+            <div class="p-meta muted">Ethnic beads</div>
+            <div class="p-bottom">
+              <div class="price">₹550</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Statement%20Necklace" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10 -->
+        <article class="product-card fade-in" role="listitem">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c8695b8bca54b5b1a2e5a7f9393a4f8" alt="Bomber jacket">
+          <div class="p-body">
+            <h3 class="p-title">Bomber Jacket</h3>
+            <div class="p-meta muted">Urban vintage</div>
+            <div class="p-bottom">
+              <div class="price">₹1,350</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Bomber%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 11 -->
+        <article class="product-card fade-in" role="listitem">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=48a5dc7d2f4f8b0f5c1b5dbd6ea6c2f2" alt="Summer skirt">
+          <div class="p-body">
+            <h3 class="p-title">Handstitched Skirt</h3>
+            <div class="p-meta muted">Flowy & light</div>
+            <div class="p-bottom">
+              <div class="price">₹600</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Handstitched%20Skirt" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 12 -->
+        <article class="product-card fade-in" role="listitem">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1520975918318-3c13c94c0921?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=99f3b2e6b1f6c6c3f5d0b2b6e6a9d6bd" alt="Ethnic jacket">
+          <div class="p-body">
+            <h3 class="p-title">Ethnic Jacket</h3>
+            <div class="p-meta muted">Traditional weave</div>
+            <div class="p-bottom">
+              <div class="price">₹1,450</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Ethnic%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Hillside Icons / Local Celebrity -->
+    <section id="local" class="section">
+      <div class="section-head">
+        <h2>Hillside Icons — Local Celebrity Fashion</h2>
+        <p class="muted">Pieces once worn or inspired by regional personalities. Authentic, limited, curated.</p>
+      </div>
+
+      <div class="local-grid">
+        <figure class="local-card">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1520974740006-6d3a4e8e56a3?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f4f2b2f2f6e0b7c6e6c9a8b9f2c3a6d" alt="Local Icon Jacket">
+          <figcaption>
+            <strong>Stage Jacket (Shillong Icon)</strong><br>
+            <span class="muted">Est. provenance</span>
+            <div class="p-bottom">
+              <div class="price">₹4,500</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=Enquiry%20about%20the%20Stage%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure class="local-card">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c8695b8bca54b5b1a2e5a7f9393a4f8" alt="Celebrity dress">
+          <figcaption>
+            <strong>Red Ceremonial Dress</strong><br>
+            <span class="muted">Celebrity wardrobe</span>
+            <div class="p-bottom">
+              <div class="price">₹3,800</div>
+              <a class="whatsapp" href="https://wa.me/919876543210?text=Enquiry%20about%20the%20Red%20Ceremonial%20Dress" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-inner">
+      <div>📍 Police Bazar, Shillong, Meghalaya • 📞 <a href="tel:+919876543210">+91 98765 43210</a> • ✉️ <a href="mailto:hello@yoow.in">hello@yoow.in</a></div>
+      <div class="socials" aria-hidden="true">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
+      <div class="small">&copy; <span id="year"></span> YOOW — Echoes from the Hills</div>
     </div>
-    <div style="opacity:0.9;font-size:0.9rem">&copy; <span id="yr"></span> YOOW — Echoes from the Hills</div>
-  </div>
-</footer>
+  </footer>
 
 <script>
-  // show year
-  document.getElementById('yr').textContent = new Date().getFullYear();
+  // Insert year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-  // logo fallback if image doesn't load
+  // Menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mainNav = document.getElementById('mainNav');
+  menuBtn.addEventListener('click', () => {
+    mainNav.classList.toggle('open');
+  });
+
+  // Logo fallback
   function logoFallback(){
-    try{
-      document.getElementById('siteLogo').style.display = 'none';
-      document.getElementById('logoText').style.display = 'block';
-    }catch(e){}
+    const logo = document.getElementById('siteLogo');
+    if(logo) logo.style.display = 'none';
   }
 
-  // mobile menu simple toggle:
-  const menuBtn = document.getElementById('menuToggle');
-  menuBtn.addEventListener('click', ()=> {
-    // naive but useful on a simple page: scroll to categories for "menu"
-    window.scrollTo({top: document.getElementById('categories').offsetTop - 60, behavior:'smooth'});
-  });
+  // small helper to scroll
+  function scrollToSection(id){
+    const el = document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }
 </script>
-
 </body>
 </html>
