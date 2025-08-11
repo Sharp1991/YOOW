@@ -1,0 +1,82 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 10px;
+}
+
+/* Header styling */
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    color: white;
+}
+
+/* Logo styling */
+header img {
+    max-width: 120px;
+    margin-bottom: 10px;
+}
+
+/* Main heading */
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Product cards */
+.product {
+    background: white;
+    margin: 10px auto;
+    padding: 15px;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Product image */
+.product img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Price styling */
+.price {
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+/* Buy button */
+button {
+    padding: 10px 15px;
+    background-color: #ff6600;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e55b00;
+}
+
+/* Responsive layout for mobile */
+@media (min-width: 600px) {
+    .product {
+        display: inline-block;
+        margin: 15px;
+    }
+}
