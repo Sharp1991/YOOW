@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="style.css">
+
+     
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
     <title>YOOW - Echoes of the Hills</title>
     <meta name="description" content="Fashion from the Northeast">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -55,46 +57,40 @@
             align-items: center;
         }
         
-        .logo-container {
+        /* New Logo Styles */
+        .new-logo-container {
             display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo {
-            height: 70px;
-            width: 70px;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-            border-radius: 50%;
-            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 24px;
-            color: #fff;
-            border: 3px solid #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+            text-decoration: none;
         }
         
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .site-title {
+        .new-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: normal;
             color: white;
-            font-size: 28px;
-            font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
         }
         
-        .site-description {
+        .tagline {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 4px;
             color: rgba(255, 255, 255, 0.85);
-            font-size: 16px;
-            font-style: italic;
-            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .new-logo-container:hover .new-logo {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        .new-logo-container:hover .tagline {
+            letter-spacing: 7px;
         }
         
         /* Navigation */
@@ -499,22 +495,37 @@
             .section-title {
                 font-size: 2rem;
             }
+            
+            .new-logo {
+                font-size: 36px;
+            }
+            
+            .tagline {
+                font-size: 12px;
+                letter-spacing: 4px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .new-logo {
+                font-size: 32px;
+            }
+            
+            .tagline {
+                font-size: 10px;
+                letter-spacing: 3px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header with Logo and Navigation -->
+    <!-- Header with New Logo and Navigation -->
     <header>
         <div class="container header-container">
-            <div class="logo-container">
-                <a href="#" class="logo">
-                    <img src="logooo.png" alt="YOOW Logo">
-                </a>
-                <div>
-                    <h1 class="site-title">YOOW - Echoes of the Hills</h1>
-                    <p class="site-description">fasioed from northeast</p>
-                </div>
-            </div>
+            <a href="#" class="new-logo-container">
+                <div class="new-logo">Yoow</div>
+                <div class="tagline">Echoes from the Hills</div>
+            </a>
             
             <nav>
                 <ul>
@@ -621,4 +632,120 @@
                     <div class="influencer-img" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');"></div>
                     <div class="influencer-info">
                         <h3>David Zote</h3>
-     
+                        <p>Accessory designer creating modern pieces with traditional Northeast motifs.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=736&q=80');">
+                        <span class="product-tag">New</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Naga Shawl Jacket</h3>
+                        <p>Contemporary jacket with traditional Naga patterns</p>
+                        <div class="product-price">₹4,299</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');">
+                        <span class="product-tag">Bestseller</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Assam Silk Saree</h3>
+                        <p>Handwoven Muga silk with tribal motifs</p>
+                        <div class="product-price">₹8,499</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');">
+                        <span class="product-tag">Eco-Friendly</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Bamboo Fiber Scarf</h3>
+                        <p>Sustainable bamboo fiber with tribal patterns</p>
+                        <div class="product-price">₹1,799</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=735&q=80');">
+                        <span class="product-tag">Limited</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Handcrafted Jewelry Set</h3>
+                        <p>Silver jewelry with traditional Meitei designs</p>
+                        <div class="product-price">₹6,299</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>About Yoow</h3>
+                    <p>Bringing the rich cultural heritage of Northeast India to the world through authentic fashion and handicrafts.</p>
+                    <p>Each piece tells a story from the hills and valleys of the Northeast region.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Collections</a></li>
+                        <li><a href="#">Artisan Stories</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates on new collections and exclusive offers.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 4px; border: none;">
+                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 YOOW - Echoes from the Hills. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
