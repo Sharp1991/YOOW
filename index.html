@@ -1,357 +1,623 @@
-<link rel="stylesheet" href="style.css">
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>YOOW — Echoes from the Hills</title>
-
-  <!-- Fonts & icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Font Awesome CDN for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOOW - Echoes of the Hills</title>
+    <meta name="description" content="fasioed from northeast">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #b21f1f;
+            --accent: #ffd700;
+            --light: #f8f9fa;
+            --dark: #0d1b4a;
+            --text: #333;
+            --gray: #666;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--primary));
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 70px;
+            width: 70px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: #fff;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .site-title {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .site-description {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 16px;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        nav a.active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1792&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideDown 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            animation: slideUp 1s ease;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border-radius: 2px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .category-content {
+            padding: 25px;
+        }
+        
+        .category-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .category-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            background-color: var(--accent);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        /* Featured Influencers */
+        .influencers {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        }
+        
+        .influencer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .influencer-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .influencer-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .influencer-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .influencer-info {
+            padding: 20px;
+        }
+        
+        .influencer-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .influencer-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Featured Products */
+        .products {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .product-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .product-price {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-top container">
-      <div class="brand">
-        <img src="logooo.png" alt="YOOW logo" class="logo" id="siteLogo" onerror="logoFallback()">
-        <div class="brand-text">
-          <div class="brand-name">YOOW</div>
-          <div class="brand-tag">Echoes from the Hills</div>
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <a href="#" class="logo">
+                    <img src="logooo.png" alt="YOOW Logo">
+                </a>
+                <div>
+                    <h1 class="site-title">YOOW - Echoes of the Hills</h1>
+                    <p class="site-description">fasioed from northeast</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Traditional</a></li>
+                    <li><a href="#" class="active">Influencer Fashions</a></li>
+                    <li><a href="#">Handicrafts</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
+    </header>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-        <i class="fas fa-bars"></i>
-      </button>
-
-      <nav class="main-nav" id="mainNav" aria-label="Primary">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#categories">Categories</a></li>
-          <li><a href="#featured">Featured</a></li>
-          <li><a href="#local">Hillside Icons</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <!-- decorative hills -->
-    <div class="hero container" id="home" role="banner" aria-label="Hero">
-      <div class="hero-left">
-        <div class="pill">Preloved • Reused • Northeast</div>
-        <h1>Echoes from the Hills</h1>
-        <p class="lead">Curated preloved fashion from the Northeast — local craftsmanship, celebrity pieces, and heritage styles reimagined.</p>
-        <div class="hero-ctas">
-          <a class="btn primary" href="#featured">Shop Featured</a>
-          <a class="btn outline" href="https://wa.me/919876543210?text=Hi%20Yoow!%20I%20want%20to%20know%20more%20about%20your%20collection" target="_blank" rel="noopener"> <i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Northeast Elegance</h1>
+            <p>Experience the unique blend of tradition and modern fashion inspired by the hills</p>
+            <a href="#" class="btn">Explore Collection</a>
         </div>
-      </div>
-
-      <div class="hero-right" aria-hidden="true">
-        <!-- stylized card -->
-        <div class="hero-card">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c8695b8bca54b5b1a2e5a7f9393a4f8" alt="Featured style">
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main content -->
-  <main class="container" id="main">
-    <!-- Categories -->
-    <section id="categories" aria-labelledby="catHead" class="section">
-      <div class="section-head">
-        <h2 id="catHead">Shop by Category</h2>
-        <p class="muted">Handpicked categories from Shillong & beyond</p>
-      </div>
-
-      <div class="categories-grid">
-        <button class="cat-card" aria-pressed="false" onclick="scrollToSection('local')">
-          <i class="fas fa-star"></i>
-          <h3>Hillside Icons</h3>
-          <p class="muted">Local Celebrity Fashion</p>
-        </button>
-
-        <button class="cat-card">
-          <i class="fas fa-leaf"></i>
-          <h3>Heritage Threads</h3>
-          <p class="muted">Traditional & handwoven</p>
-        </button>
-
-        <button class="cat-card">
-          <i class="fas fa-tshirt"></i>
-          <h3>Everyday Echoes</h3>
-          <p class="muted">Casual preloved wear</p>
-        </button>
-
-        <button class="cat-card">
-          <i class="fas fa-box-open"></i>
-          <h3>Vintage Gems</h3>
-          <p class="muted">Restored classics</p>
-        </button>
-
-        <button class="cat-card">
-          <i class="fas fa-gem"></i>
-          <h3>Accessories</h3>
-          <p class="muted">Bags, shawls, jewelry</p>
-        </button>
-
-        <button class="cat-card">
-          <i class="fas fa-snowflake"></i>
-          <h3>Winter Specials</h3>
-          <p class="muted">Cozy & warm</p>
-        </button>
-      </div>
     </section>
 
-    <!-- Featured -->
-    <section id="featured" aria-labelledby="featHead" class="section">
-      <div class="section-head">
-        <h2 id="featHead">Featured Products</h2>
-        <p class="muted">Curated picks — new arrivals & local favourites</p>
-      </div>
-
-      <div class="filters">
-        <div class="filter-pill active">All</div>
-        <div class="filter-pill">Hillside Icons</div>
-        <div class="filter-pill">Heritage Threads</div>
-        <div class="filter-pill">Under ₹1,500</div>
-      </div>
-
-      <div class="products-grid" role="list">
-        <!-- 12 product cards -->
-        <!-- 1 -->
-        <article class="product-card fade-in" role="listitem" aria-label="Handwoven Jacket">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c8695b8bca54b5b1a2e5a7f9393a4f8" alt="Handwoven vintage jacket">
-          <div class="p-body">
-            <h3 class="p-title">Handwoven Vintage Jacket</h3>
-            <div class="p-meta muted">Size: M • Excellent condition</div>
-            <div class="p-bottom">
-              <div class="price">₹1,200</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Handwoven%20Vintage%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Our Fashion Categories</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="category-content">
+                        <h3>Traditional Attire</h3>
+                        <p>Authentic clothing that reflects the rich cultural heritage of Northeast India. Each piece tells a story of the hills and its people.</p>
+                        <a href="#" class="btn">View Collection</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="category-content">
+                        <h3>Influencer Fashions</h3>
+                        <p>Trendsetting styles curated by Northeast influencers. <span class="highlight">Featured collection</span> blending modern aesthetics with cultural elements.</p>
+                        <a href="#" class="btn">Explore Trends</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="category-content">
+                        <h3>Handwoven Textiles</h3>
+                        <p>Exquisite fabrics handcrafted by skilled artisans from the hills. Each thread embodies the spirit of Northeast craftsmanship.</p>
+                        <a href="#" class="btn">Discover Fabrics</a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </article>
-
-        <!-- 2 -->
-        <article class="product-card fade-in" role="listitem" aria-label="Tribal Dress">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1520975918318-3c13c94c0921?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=99f3b2e6b1f6c6c3f5d0b2b6e6a9d6bd" alt="Tribal print dress">
-          <div class="p-body">
-            <h3 class="p-title">Tribal Print Dress</h3>
-            <div class="p-meta muted">Size: L • Hand-stitched</div>
-            <div class="p-bottom">
-              <div class="price">₹950</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Tribal%20Print%20Dress" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 3 -->
-        <article class="product-card fade-in" role="listitem" aria-label="Bamboo Bag">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=48a5dc7d2f4f8b0f5c1b5dbd6ea6c2f2" alt="Handmade bamboo bag">
-          <div class="p-body">
-            <h3 class="p-title">Handmade Bamboo Bag</h3>
-            <div class="p-meta muted">One-of-a-kind</div>
-            <div class="p-bottom">
-              <div class="price">₹700</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Handmade%20Bamboo%20Bag" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 4 -->
-        <article class="product-card fade-in" role="listitem">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1520974740006-6d3a4e8e56a3?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f4f2b2f2f6e0b7c6e6c9a8b9f2c3a6d" alt="Retro denim jacket">
-          <div class="p-body">
-            <h3 class="p-title">Retro Denim Jacket</h3>
-            <div class="p-meta muted">Size: XL • Lightly used</div>
-            <div class="p-bottom">
-              <div class="price">₹1,050</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Retro%20Denim%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 5 -->
-        <article class="product-card fade-in" role="listitem">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=48a5dc7d2f4f8b0f5c1b5dbd6ea6c2f2" alt="Floral dress">
-          <div class="p-body">
-            <h3 class="p-title">Floral Summer Dress</h3>
-            <div class="p-meta muted">Size: S • Excellent</div>
-            <div class="p-bottom">
-              <div class="price">₹650</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Floral%20Summer%20Dress" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 6 -->
-        <article class="product-card fade-in" role="listitem">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1578934845150-9b83b0b8f9e2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2b3c4d5e6f7a8b9c0d" alt="Leather bag">
-          <div class="p-body">
-            <h3 class="p-title">Vintage Leather Bag</h3>
-            <div class="p-meta muted">Classic brown</div>
-            <div class="p-bottom">
-              <div class="price">₹1,600</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Vintage%20Leather%20Bag" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 7 -->
-        <article class="product-card fade-in" role="listitem">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcdef123456" alt="Wool shawl">
-          <div class="p-body">
-            <h3 class="p-title">Woolen Shawl</h3>
-            <div class="p-meta muted">Warm & soft</div>
-            <div class="p-bottom">
-              <div class="price">₹850</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Woolen%20Shawl" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 8 -->
-        <article class="product-card fade-in" role="listitem">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=aa11bb22cc33" alt="Classic watch">
-          <div class="p-body">
-            <h3 class="p-title">Classic Wristwatch</h3>
-            <div class="p-meta muted">Preloved, working</div>
-            <div class="p-bottom">
-              <div class="price">₹1,400</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Classic%20Wristwatch" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 9 -->
-        <article class="product-card fade-in" role="listitem">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1556909116-1b7b8a3e2b6d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=998877665544" alt="Statement necklace">
-          <div class="p-body">
-            <h3 class="p-title">Statement Necklace</h3>
-            <div class="p-meta muted">Ethnic beads</div>
-            <div class="p-bottom">
-              <div class="price">₹550</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Statement%20Necklace" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 10 -->
-        <article class="product-card fade-in" role="listitem">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c8695b8bca54b5b1a2e5a7f9393a4f8" alt="Bomber jacket">
-          <div class="p-body">
-            <h3 class="p-title">Bomber Jacket</h3>
-            <div class="p-meta muted">Urban vintage</div>
-            <div class="p-bottom">
-              <div class="price">₹1,350</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Bomber%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 11 -->
-        <article class="product-card fade-in" role="listitem">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=48a5dc7d2f4f8b0f5c1b5dbd6ea6c2f2" alt="Summer skirt">
-          <div class="p-body">
-            <h3 class="p-title">Handstitched Skirt</h3>
-            <div class="p-meta muted">Flowy & light</div>
-            <div class="p-bottom">
-              <div class="price">₹600</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Handstitched%20Skirt" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 12 -->
-        <article class="product-card fade-in" role="listitem">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1520975918318-3c13c94c0921?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=99f3b2e6b1f6c6c3f5d0b2b6e6a9d6bd" alt="Ethnic jacket">
-          <div class="p-body">
-            <h3 class="p-title">Ethnic Jacket</h3>
-            <div class="p-meta muted">Traditional weave</div>
-            <div class="p-bottom">
-              <div class="price">₹1,450</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=I'm%20interested%20in%20the%20Ethnic%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </article>
-      </div>
+        </div>
     </section>
 
-    <!-- Hillside Icons / Local Celebrity -->
-    <section id="local" class="section">
-      <div class="section-head">
-        <h2>Hillside Icons — Local Celebrity Fashion</h2>
-        <p class="muted">Pieces once worn or inspired by regional personalities. Authentic, limited, curated.</p>
-      </div>
-
-      <div class="local-grid">
-        <figure class="local-card">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1520974740006-6d3a4e8e56a3?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f4f2b2f2f6e0b7c6e6c9a8b9f2c3a6d" alt="Local Icon Jacket">
-          <figcaption>
-            <strong>Stage Jacket (Shillong Icon)</strong><br>
-            <span class="muted">Est. provenance</span>
-            <div class="p-bottom">
-              <div class="price">₹4,500</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=Enquiry%20about%20the%20Stage%20Jacket" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </figcaption>
-        </figure>
-
-        <figure class="local-card">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c8695b8bca54b5b1a2e5a7f9393a4f8" alt="Celebrity dress">
-          <figcaption>
-            <strong>Red Ceremonial Dress</strong><br>
-            <span class="muted">Celebrity wardrobe</span>
-            <div class="p-bottom">
-              <div class="price">₹3,800</div>
-              <a class="whatsapp" href="https://wa.me/919876543210?text=Enquiry%20about%20the%20Red%20Ceremonial%20Dress" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="container footer-inner">
-      <div>📍 Police Bazar, Shillong, Meghalaya • 📞 <a href="tel:+919876543210">+91 98765 43210</a> • ✉️ <a href="mailto:hello@yoow.in">hello@yoow.in</a></div>
-      <div class="socials" aria-hidden="true">
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-      </div>
-      <div class="small">&copy; <span id="year"></span> YOOW — Echoes from the Hills</div>
-    </div>
-  </footer>
-
-<script>
-  // Insert year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Menu toggle
-  const menuBtn = document.getElementById('menuBtn');
-  const mainNav = document.getElementById('mainNav');
-  menuBtn.addEventListener('click', () => {
-    mainNav.classList.toggle('open');
-  });
-
-  // Logo fallback
-  function logoFallback(){
-    const logo = document.getElementById('siteLogo');
-    if(logo) logo.style.display = 'none';
-  }
-
-  // small helper to scroll
-  function scrollToSection(id){
-    const el = document.getElementById(id);
-    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-  }
-</script>
-</body>
-</html>
+    <!-- Influencers Section -->
+    <section class="influencers">
+        <div class="container">
+            <h2 class="section-title">Featured Fashion Influencers</h2>
+            <div class="influencer-grid">
+                <div class="influencer-card">
+                    <div class="influencer-img" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80');"></div>
+                    <div class="influencer-info">
+                        <h3>Meira Chang</h3>
+                        <p>Fusion fashion specialist blending traditional Manipuri patterns with modern silhouettes.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="influencer-card">
+                    <div class="influencer-img" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80');"></div>
+                    <div class="influencer-info">
+                        <h3>Arun Thangjam</h3>
+                        <p>Menswear influencer showcasing contemporary Northeast styles for the modern man.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="influencer-card">
+                    <div class="influencer-img" style="background-image: url('https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80');"></div>
+                    <div class="influencer-info">
+                        <h3>Neha Baruah</h3>
+                        <p>Sustainable fashion advocate promoting eco-friendly Northeast textiles and designs.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="influencer-card">
+                    <div class="influencer-img" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="influencer-info">
+                        <h3>David Zote</h3>
+     
